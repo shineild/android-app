@@ -28,16 +28,14 @@ public class FingerPrintHandler extends FingerprintManager.AuthenticationCallbac
     @Override
     public void onAuthenticationError(int errMsgId,
                                       CharSequence errString) {
-        Toast.makeText(appContext,
-                "Authentication error\n" + errString,
+        Toast.makeText(appContext, errString,
                 Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onAuthenticationHelp(int helpMsgId,
                                      CharSequence helpString) {
-        Toast.makeText(appContext,
-                "Authentication help\n" + helpString,
+        Toast.makeText(appContext, helpString,
                 Toast.LENGTH_LONG).show();
     }
 
@@ -46,7 +44,6 @@ public class FingerPrintHandler extends FingerprintManager.AuthenticationCallbac
         Toast.makeText(appContext,
                 "등록되지 않은 지문입니다." ,
                 Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -55,7 +52,7 @@ public class FingerPrintHandler extends FingerprintManager.AuthenticationCallbac
 
         Intent intent = new Intent(appContext, MainActivity.class);
         appContext.startActivity(intent);
-        Toast.makeText(appContext,"지문이 확인되었습니다.\n" , Toast.LENGTH_LONG).show();
+        Toast.makeText(appContext,"지문이 확인되었습니다.\n로그인 요청을 보냅니다." , Toast.LENGTH_LONG).show();
     }
 }
 
