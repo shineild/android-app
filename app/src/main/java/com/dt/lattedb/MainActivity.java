@@ -1,7 +1,5 @@
 package com.dt.lattedb;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dt.lattedb.fido.FingerPrintActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
     private IntentIntegrator qrScan;
+    private Intent intent;
+
 
     public static Variable variable = new Variable();
 
@@ -26,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.loginbtn);
 
+        qrScan = new IntentIntegrator(this);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                qrScan.setPrompt("스캔 중");
+                qrScan.setPrompt("스캔 중...");
                 qrScan.initiateScan();
             }
         });
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 variable.qrId = result.getContents();
                 Log.d("TEST", "qrId : " + variable.qrId);
                 //Todo FingerPrintActivity 시작
+                intent = new Intent(this, FingerPrintActivity.class);
+                startActivity(intent);
             }
 
         } else {
